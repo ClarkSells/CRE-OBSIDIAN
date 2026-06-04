@@ -24,9 +24,11 @@ Status as of June 4, 2026.
 | 18 | README explains installation/testing | PASS | `README.md`. |
 | 19 | Architecture documentation | PASS | `docs/ARCHITECTURE.md`. |
 | 20 | Schema documentation | PASS | `docs/SCHEMA.md`. |
-| 21 | RealNex sync documentation | PASS | `docs/REALNEX_SYNC.md`. |
-| 22 | Future agent engine documentation | PASS | `docs/FUTURE_AGENT_ENGINE.md`. |
+| 21 | RealNex sync documentation | PASS | `docs/REALNEX_SYNC.md` documents the controlled V2 CSV-only boundary. |
+| 22 | Future agent engine documentation | PASS | `docs/FUTURE_LOCAL_LLM_AGENT_ENGINE.md` keeps research agents external to the V2 plugin. |
+| 23 | Demo scope and known limitations | PASS | `docs/DEMO_SCRIPT.md` and `docs/KNOWN_LIMITATIONS.md` frame intentional V2 boundaries without treating them as blockers. |
+| 24 | Desktop visual acceptance | MANUAL PENDING | Complete `docs/DESKTOP_TEST_CHECKLIST.md` in desktop Obsidian. |
 
-The exact automated results are generated in `docs/ACCEPTANCE_REPORT.md`. Complete the desktop-only items using `docs/MANUAL_TESTS.md`.
+The exact automated results are generated in `docs/ACCEPTANCE_REPORT.md`. Complete desktop visual/load acceptance using `docs/DESKTOP_TEST_CHECKLIST.md`, then continue with deeper checks in `docs/MANUAL_TESTS.md`.
 
 V2-specific acceptance is tracked in `docs/V2_ACCEPTANCE_CHECKLIST.md` and the 25,000-record results are in `docs/V2_BENCHMARK_REPORT.md`.

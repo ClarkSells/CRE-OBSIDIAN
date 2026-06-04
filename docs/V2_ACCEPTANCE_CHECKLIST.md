@@ -15,4 +15,7 @@
 - [x] Unified search finds analytical and Markdown records and supports bulk promotion/saved searches.
 - [x] 25,000-record benchmark meets documented targets.
 - [x] Production build, typecheck, lifecycle smoke, V2 tests, benchmark, sample install, and automated acceptance pass.
+- [x] V2 limitations are documented as intentional scope boundaries where appropriate.
+- [x] RealNex is documented as controlled CSV import/export only.
+- [x] Future local LLM research agents are documented as external to the V2 plugin.
 - [ ] Desktop Obsidian visual smoke remains manual because OS policy denies launch in this managed session.

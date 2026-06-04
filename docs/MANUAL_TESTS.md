@@ -1,5 +1,7 @@
 # Manual Tests
 
+Complete [DESKTOP_TEST_CHECKLIST.md](DESKTOP_TEST_CHECKLIST.md) for final visual/load acceptance. The tests below provide deeper feature-level coverage.
+
 ## Test 1: Install And Load
 
 1. Run `npm.cmd install`, `npm.cmd run build`, and `npm.cmd run install:sample`.
@@ -32,7 +34,7 @@
 
 1. Open a demo entity note and run `STRIVE Navigator: Open Owner Dossier`.
 2. Open the Relationship Graph.
-3. Expected: entity facts and controlled property appear; graph renders clickable nodes and labeled edge tooltips.
+3. Expected: entity facts and controlled property appear; graph renders a focused, clickable neighborhood with labeled edge tooltips rather than attempting to display the entire analytical universe.
 
 ## Test 7: Signal, Comps, And Investors
 
@@ -53,7 +55,7 @@
 
 1. Run `STRIVE Navigator: Open RealNex Sync Queue`.
 2. Export all records.
-3. Expected: a timestamped CSV appears in `Exports/` and a notice shows its path.
+3. Expected: a timestamped reviewed staging CSV appears in `Exports/`, a notice shows its path, and the UI does not imply direct or two-way RealNex synchronization.
 
 ## Automated Acceptance
 
@@ -89,6 +91,7 @@ Run `npm.cmd run acceptance`, then inspect `docs/ACCEPTANCE_REPORT.md`.
 4. Expected: clustered map points update; clicking a point opens its record.
 5. Place valid GeoJSON in `Imports/` and reopen the map.
 6. Expected: local polygon/line overlay appears.
+7. If the configured online style is unavailable, confirm the view remains understandable and explain the user-supplied local-asset boundary.
 
 ## Test 14: CSV Import And Reconciliation
 
@@ -97,8 +100,9 @@ Run `npm.cmd run acceptance`, then inspect `docs/ACCEPTANCE_REPORT.md`.
 3. Import the batch.
 4. Expected: batch ledger, imported analytical records, immutable event, and duplicate issues appear.
 5. Open Data Quality Center and review a duplicate; test analytical merge/split.
-6. Roll back the batch.
-7. Expected: unpromoted imported records are removed and promoted Markdown remains.
+6. Confirm a promoted Markdown dossier cannot be silently deleted by an automated merge.
+7. Roll back the batch.
+8. Expected: unpromoted imported records are removed and promoted Markdown remains.
 
 ## Test 15: Core Brokerage Operations
 

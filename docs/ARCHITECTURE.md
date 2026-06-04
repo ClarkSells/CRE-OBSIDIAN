@@ -36,4 +36,6 @@ V2 implements the two-tier architecture documented in `V2_ARCHITECTURE.md`: `sql
 
 ## Future Layers
 
-Postgres/PostGIS can become the heavy normalized system for geometry, 150,000-record bulk data, and spatial analytics while Markdown remains the curated intelligence layer. Future local agents should ingest through explicit source documents, append evidence, preserve broker notes, and mark inferred claims for review.
+Postgres/PostGIS can become the heavy normalized system for geometry, 150,000-record bulk data, and spatial analytics while Markdown remains the curated intelligence layer. Future local agents remain external to the V2 plugin: they should ingest through a controlled bridge, create explicit source documents, append evidence, preserve broker notes, and mark inferred claims for review.
+
+See [FUTURE_LOCAL_LLM_AGENT_ENGINE.md](FUTURE_LOCAL_LLM_AGENT_ENGINE.md) for the future architecture boundary and [DATA_QUALITY_AND_PROVENANCE.md](DATA_QUALITY_AND_PROVENANCE.md) for the evidence contract.
