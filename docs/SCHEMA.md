@@ -31,6 +31,18 @@ Every structured note requires:
 | `deal_signal` | `signal_` | `Deal Signals/` | Evidence-backed reason to act |
 | `source_document` | `source_` | `Sources/` | Source trail |
 | `relationship_edge` | `edge_` | `System/Relationship Edges/` | Explicit graph connection |
+| `company` | `company_` | `Companies/` | Company relationship operating view |
+| `task` | `task_` | `Tasks/` | Assigned, due, and recurring action |
+| `requirement` | `requirement_` | `Requirements/` | Buyer need and acquisition criteria |
+| `pursuit` | `pursuit_` | `Pursuits/` | Investment-sales revenue pursuit |
+| `transaction` | `transaction_` | `Transactions/` | Deal execution and milestones |
+| `document` | `document_` | `Documents/` | Linked document metadata |
+| `timeline_template` | `timeline_` | `System/Timeline Templates/` | Reusable workflow steps |
+| `saved_view` | `savedview_` | `System/Saved Views/` | Saved search, graph, map, or board state |
+| `import_batch` | `import_` | `System/Import Batches/` | Source, mapping, result, and rollback ledger |
+| `data_issue` | `issue_` | `System/Data Issues/` | Duplicate, orphan, stale, or conflict queue |
+| `record_event` | `event_` | `System/Record Events/` | Immutable historical event |
+| `field_assertion` | `assertion_` | `System/Field Assertions/` | Sourced temporal field claim |
 
 Type-specific fields are declared in `src/schemas.ts`. Blank values are allowed during staged research; validation surfaces material gaps.
 
@@ -38,3 +50,4 @@ Type-specific fields are declared in `src/schemas.ts`. Blank values are allowed 
 
 The plugin supports ownership, parcel, tenant, lease, loan, submarket, comp, entity-control, shared-address, registered-agent, investor-match, broker-contact, deal-signal, refinance-risk, and rollover-risk edges. Every uncertain edge carries confidence, source, and human-review context.
 
+V2 relationship edges additionally support `status`, `weight`, `valid_from`, `valid_to`, `evidence_ids`, and `last_verified`. This enables current-state and as-of graph queries.

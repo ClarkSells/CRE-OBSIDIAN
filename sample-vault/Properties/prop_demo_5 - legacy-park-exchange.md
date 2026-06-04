@@ -13,6 +13,8 @@ address: "7112 Copper Star Parkway"
 city: "Plano"
 state: "TX"
 county: "Dallas"
+lat: 32.66
+lng: -96.46
 submarket: "submarket_demo_5"
 asset_class: "office"
 asset_subtype: "demo_asset"

@@ -13,6 +13,8 @@ address: "3401 Hidden Spur Road"
 city: "Irving"
 state: "TX"
 county: "Dallas"
+lat: 33.14
+lng: -97.18
 submarket: "submarket_demo_4"
 asset_class: "office"
 asset_subtype: "demo_asset"

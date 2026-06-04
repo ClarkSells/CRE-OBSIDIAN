@@ -9,14 +9,28 @@ export const VIEW_TYPES = {
   signalRadar: "strive-signal-radar",
   compsBoard: "strive-comps-board",
   investorMatch: "strive-investor-match",
-  realnexQueue: "strive-realnex-queue"
+  realnexQueue: "strive-realnex-queue",
+  historyTimeline: "strive-history-timeline",
+  mapIntelligence: "strive-map-intelligence",
+  importCenter: "strive-import-center",
+  dataQuality: "strive-data-quality",
+  taskCenter: "strive-task-center",
+  requirementsBoard: "strive-requirements-board",
+  pursuitPipeline: "strive-pursuit-pipeline",
+  transactionManager: "strive-transaction-manager",
+  unifiedSearch: "strive-unified-search",
+  company360: "strive-company-360",
+  contact360: "strive-contact-360"
 } as const;
 
 export const REQUIRED_FOLDERS = [
   "Properties", "Parcels", "Entities", "People", "Companies", "Investors", "Tenants",
   "Leases", "Loans", "Comps", "Comps/Sales", "Comps/Leases", "Submarkets",
   "Deal Signals", "Broker Notes", "Dashboards", "Templates", "Sources", "Imports",
-  "Exports", "System", "System/Relationship Edges"
+  "Exports", "System", "System/Relationship Edges", "System/Backups", "Companies",
+  "Tasks", "Requirements", "Pursuits", "Transactions", "Documents",
+  "System/Timeline Templates", "System/Saved Views", "System/Import Batches",
+  "System/Data Issues", "System/Record Events", "System/Field Assertions"
 ];
 
 export const TYPE_FOLDERS: Record<RecordType, string> = {
@@ -34,7 +48,19 @@ export const TYPE_FOLDERS: Record<RecordType, string> = {
   broker_activity: "Broker Notes",
   deal_signal: "Deal Signals",
   source_document: "Sources",
-  relationship_edge: "System/Relationship Edges"
+  relationship_edge: "System/Relationship Edges",
+  company: "Companies",
+  task: "Tasks",
+  requirement: "Requirements",
+  pursuit: "Pursuits",
+  transaction: "Transactions",
+  document: "Documents",
+  timeline_template: "System/Timeline Templates",
+  saved_view: "System/Saved Views",
+  import_batch: "System/Import Batches",
+  data_issue: "System/Data Issues",
+  record_event: "System/Record Events",
+  field_assertion: "System/Field Assertions"
 };
 
 export const TYPE_PREFIXES: Record<RecordType, string> = {
@@ -42,7 +68,10 @@ export const TYPE_PREFIXES: Record<RecordType, string> = {
   investor_profile: "investor", tenant: "tenant", lease: "lease", loan: "loan",
   sale_comp: "salecomp", lease_comp: "leasecomp", submarket: "submarket",
   broker_activity: "activity", deal_signal: "signal", source_document: "source",
-  relationship_edge: "edge"
+  relationship_edge: "edge", company: "company", task: "task", requirement: "requirement",
+  pursuit: "pursuit", transaction: "transaction", document: "document",
+  timeline_template: "timeline", saved_view: "savedview", import_batch: "import",
+  data_issue: "issue", record_event: "event", field_assertion: "assertion"
 };
 
 export const TYPE_LABELS: Record<RecordType, string> = {
@@ -50,7 +79,11 @@ export const TYPE_LABELS: Record<RecordType, string> = {
   investor_profile: "Investor Profile", tenant: "Tenant", lease: "Lease", loan: "Loan",
   sale_comp: "Sale Comp", lease_comp: "Lease Comp", submarket: "Submarket",
   broker_activity: "Broker Activity", deal_signal: "Deal Signal",
-  source_document: "Source Document", relationship_edge: "Relationship Edge"
+  source_document: "Source Document", relationship_edge: "Relationship Edge",
+  company: "Company", task: "Task", requirement: "Requirement", pursuit: "Pursuit",
+  transaction: "Transaction", document: "Document", timeline_template: "Timeline Template",
+  saved_view: "Saved View", import_batch: "Import Batch", data_issue: "Data Issue",
+  record_event: "Record Event", field_assertion: "Field Assertion"
 };
 
 export const RELATIONSHIP_TYPES = [
@@ -64,3 +97,4 @@ export const RELATIONSHIP_TYPES = [
   "LEASE_CREATES_ROLLOVER_RISK_FOR_PROPERTY"
 ];
 
+export const V2_SCHEMA_VERSION = 2;

@@ -13,6 +13,8 @@ address: "10910 Lantern Bend"
 city: "Frisco"
 state: "TX"
 county: "Dallas"
+lat: 32.66
+lng: -96.7
 submarket: "submarket_demo_1"
 asset_class: "office"
 asset_subtype: "demo_asset"

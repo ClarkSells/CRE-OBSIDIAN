@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Demo DFW Intelligence Zone"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -97.25,
+              32.72
+            ],
+            [
+              -96.75,
+              32.72
+            ],
+            [
+              -96.75,
+              33.08
+            ],
+            [
+              -97.25,
+              33.08
+            ],
+            [
+              -97.25,
+              32.72
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

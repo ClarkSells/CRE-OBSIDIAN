@@ -13,6 +13,8 @@ address: "2821 Prairie Link Road"
 city: "Grand Prairie"
 state: "TX"
 county: "Dallas"
+lat: 32.82
+lng: -97.42
 submarket: "submarket_demo_6"
 asset_class: "industrial"
 asset_subtype: "demo_asset"

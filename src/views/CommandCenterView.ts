@@ -21,7 +21,11 @@ export class CommandCenterView extends BaseNavigatorView {
       "War Room": VIEW_TYPES.propertyWarRoom, "Owner Dossier": VIEW_TYPES.ownerDossier,
       "Relationship Graph": VIEW_TYPES.relationshipGraph, "Signal Radar": VIEW_TYPES.signalRadar,
       "Comps Board": VIEW_TYPES.compsBoard, "Investor Match": VIEW_TYPES.investorMatch,
-      "RealNex Queue": VIEW_TYPES.realnexQueue
+      "Map Intelligence": VIEW_TYPES.mapIntelligence, "History": VIEW_TYPES.historyTimeline,
+      "Tasks": VIEW_TYPES.taskCenter, "Requirements": VIEW_TYPES.requirementsBoard,
+      "Pursuit Pipeline": VIEW_TYPES.pursuitPipeline, "Transactions": VIEW_TYPES.transactionManager,
+      "Import Center": VIEW_TYPES.importCenter, "Data Quality": VIEW_TYPES.dataQuality,
+      "Unified Search": VIEW_TYPES.unifiedSearch, "RealNex Queue": VIEW_TYPES.realnexQueue
     }).forEach(([label, type]) => actions.createEl("button", { text: label }).addEventListener("click", () => void this.plugin.openView(type)));
 
     const counts = this.plugin.index.counts();
@@ -41,6 +45,10 @@ export class CommandCenterView extends BaseNavigatorView {
     kpi(kpis, "Human Review Queue", this.plugin.index.all().filter((r) => r.human_review === true).length, "is-warning");
     kpi(kpis, "RealNex Sync Queue", this.plugin.index.all().filter((r) => ["property", "entity", "person", "investor_profile"].includes(r.type)).length);
     kpi(kpis, "Validation Flags", validation.size, validation.size ? "is-warning" : "");
+    kpi(kpis, "Analytical Universe", this.plugin.store.health().recordCount);
+    kpi(kpis, "Open Tasks", this.plugin.store.allRecords("task").filter((record) => record.status !== "complete").length);
+    kpi(kpis, "Pipeline Fee", this.plugin.store.allRecords("pursuit").reduce((sum, record) => sum + Number(record.expected_fee || 0) * Number(record.probability || 0) / 100, 0).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }));
+    kpi(kpis, "Data Quality Issues", Object.values(this.plugin.quality.summary(this.plugin.settings.staleRecordDays)).reduce((sum, value) => sum + value, 0), "is-warning");
 
     const signalSection = section(this.root, "Priority Deal Signals", "Sorted by signal strength");
     const signals = this.plugin.index.findByType("deal_signal").sort((a, b) => Number(b.signal_strength) - Number(a.signal_strength)).slice(0, 10);

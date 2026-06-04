@@ -1,0 +1,3 @@
+RecordType,RealNexID,Property Name,Property Address,City,State,Property Type,Building Size,Owner,DealSignalScore
+property,RNX-DEMO-1,Demo Import Retail Center,9000 Example Commerce Way,Dallas,TX,retail,78000,Demo Import Holdings LLC,82
+property,RNX-DEMO-2,Demo Import Industrial Park,9100 Example Commerce Way,Fort Worth,TX,industrial,145000,Demo Import Holdings LLC,76

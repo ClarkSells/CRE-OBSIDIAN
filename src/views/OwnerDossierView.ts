@@ -19,6 +19,7 @@ export class OwnerDossierView extends BaseNavigatorView {
     const owner = this.focusRecord;
     const edges = this.plugin.index.relationshipsFor(owner.id);
     const related = edges.map((e) => this.plugin.index.findById(e.from === owner.id ? e.to : e.from)).filter((r): r is NavigatorRecord => Boolean(r));
+    const deepRelated = this.plugin.graph.neighborhood(owner.id, 3).nodes.filter((record) => record.id !== owner.id);
     const properties = this.plugin.index.findByType("property").filter((p) => p.owner_entity === owner.id || p.beneficial_owner === owner.id || related.some((r) => r.id === p.id));
     const portfolio = properties.reduce((sum, p) => sum + Number(p.assessed_value || 0), 0);
     pageHeader(this.root, "OWNER / ENTITY DOSSIER", owner.name, "Entity piercing, source confidence, relationship ownership, and controlled-property intelligence.");
@@ -30,9 +31,10 @@ export class OwnerDossierView extends BaseNavigatorView {
     recordTable(prop, properties, [["Property", "name"], ["Submarket", "submarket"], ["Asset", "asset_class"], ["Assessed Value", "assessed_value"], ["Signal Score", "deal_signal_score"]], (r) => this.openRecord(r));
     const rel = section(this.root, "Known and Possible Relationships", `${related.length} indexed graph relationships`);
     recordTable(rel, related, [["Related Record", "name"], ["Type", "type"], ["Confidence", "confidence_tier"], ["Source Status", "source_status"]], (r) => this.openRecord(r));
+    const deep = section(this.root, "Three-Hop Control And Relationship Network", `${deepRelated.length} related records`);
+    recordTable(deep, deepRelated, [["Record", "name"], ["Type", "type"], ["Confidence", "confidence_tier"], ["Updated", "updated"]], (r) => this.openRecord(r));
     const source = section(this.root, "Source Trail / Human Review", "Inferred control is never presented as confirmed");
     source.createDiv({ cls: "strive-warning-panel", text: "Demo ownership and principal relationships are synthetic, confidence tier C, and require human review before broker use." });
     this.agentInspector(owner);
   }
 }
-

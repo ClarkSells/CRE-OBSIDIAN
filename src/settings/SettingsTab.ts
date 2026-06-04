@@ -20,6 +20,17 @@ export class NavigatorSettingsTab extends PluginSettingTab {
       this.context.settings.exportHumanReviewRecords = value;
       await this.context.saveSettings();
     }));
+    new Setting(this.containerEl).setName("Analytical store").setDesc("Enable the local V2 analytical store for imports, history, graph, and workflows.").addToggle((toggle) => toggle.setValue(this.context.settings.analyticalStoreEnabled).onChange(async (value) => {
+      this.context.settings.analyticalStoreEnabled = value;
+      await this.context.saveSettings();
+    }));
+    new Setting(this.containerEl).setName("Map style URL").setDesc("MapLibre style URL used when an online basemap is available.").addText((input) => input.setValue(this.context.settings.mapStyleUrl).onChange(async (value) => {
+      this.context.settings.mapStyleUrl = value.trim();
+      await this.context.saveSettings();
+    }));
+    new Setting(this.containerEl).setName("Stale record threshold").setDesc("Days without an update before the Data Quality Center flags a record.").addText((input) => input.setValue(String(this.context.settings.staleRecordDays)).onChange(async (value) => {
+      this.context.settings.staleRecordDays = Math.max(1, Number(value) || 180);
+      await this.context.saveSettings();
+    }));
   }
 }
-

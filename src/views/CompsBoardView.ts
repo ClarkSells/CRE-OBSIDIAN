@@ -47,7 +47,7 @@ export class CompsBoardView extends BaseNavigatorView {
           && (!start.value || date >= start.value)
           && (!end.value || date <= end.value);
       });
-      recordTable(table, filtered, [["Comp", "name"], ["Type", "type"], ["Subject", (r) => this.plugin.index.findById(r.property)?.name], ["Distance", () => "TBD"], ["Date", (r) => r.sale_date ?? r.signed_date], ["Price / Rent PSF", (r) => r.price_psf ?? r.rent_psf], ["Cap Rate", "cap_rate"], ["Buyer / Tenant", (r) => r.buyer ?? this.plugin.index.findById(r.tenant)?.name], ["Quality", "comp_quality_score"], ["Why Comparable", "why_comparable"], ["Confidence", "confidence_tier"]], (r: NavigatorRecord) => this.openRecord(r));
+      recordTable(table, filtered, [["Comp", "name"], ["Type", "type"], ["Subject", (r) => this.plugin.index.findById(r.property)?.name], ["Distance", (r) => this.distance(r)], ["Date", (r) => r.sale_date ?? r.signed_date], ["Price / Rent PSF", (r) => r.price_psf ?? r.rent_psf], ["Cap Rate", "cap_rate"], ["Buyer / Tenant", (r) => r.buyer ?? this.plugin.index.findById(r.tenant)?.name], ["Quality", "comp_quality_score"], ["Why Comparable", "why_comparable"], ["Confidence", "confidence_tier"]], (r: NavigatorRecord) => this.openRecord(r));
     };
     renderTable();
     kind.addEventListener("change", renderTable);
@@ -56,5 +56,12 @@ export class CompsBoardView extends BaseNavigatorView {
     tier.addEventListener("change", renderTable);
     start.addEventListener("change", renderTable);
     end.addEventListener("change", renderTable);
+  }
+
+  private distance(comp: NavigatorRecord): string {
+    if (comp.distance_miles !== undefined && comp.distance_miles !== "") return `${Number(comp.distance_miles).toFixed(1)} mi`;
+    const subject = this.plugin.index.findById(comp.property) ?? this.plugin.store.findById(String(comp.property));
+    if (!subject || !Number.isFinite(Number(subject.lat)) || !Number.isFinite(Number(subject.lng)) || !Number.isFinite(Number(comp.lat)) || !Number.isFinite(Number(comp.lng))) return "Not mapped";
+    return `${this.plugin.spatial.distanceMiles(Number(subject.lat), Number(subject.lng), Number(comp.lat), Number(comp.lng)).toFixed(1)} mi`;
   }
 }

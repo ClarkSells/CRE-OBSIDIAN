@@ -23,6 +23,10 @@ export class PropertyWarRoomView extends BaseNavigatorView {
     const property = this.focusRecord;
     const linked = this.plugin.index.linkedProperty(property);
     pageHeader(this.root, "PROPERTY WAR ROOM", property.name, `${String(property.address ?? "")}, ${String(property.city ?? "")}, TX · ${String(property.asset_class ?? "").toUpperCase()}`);
+    const actions = this.root.createDiv({ cls: "strive-action-strip" });
+    actions.createEl("button", { text: "Open Map" }).addEventListener("click", () => void this.plugin.openView(VIEW_TYPES.mapIntelligence));
+    actions.createEl("button", { text: "Open Relationship Explorer" }).addEventListener("click", () => void this.plugin.openView(VIEW_TYPES.relationshipGraph));
+    actions.createEl("button", { text: "Open History" }).addEventListener("click", () => void this.plugin.openView(VIEW_TYPES.historyTimeline));
     const selector = this.root.createEl("select", { cls: "strive-select" });
     properties.forEach((record) => selector.createEl("option", { value: record.id, text: record.name }));
     selector.value = property.id;
@@ -34,6 +38,8 @@ export class PropertyWarRoomView extends BaseNavigatorView {
     warningPanel(this.root, this.plugin.validation.validate(property));
     factGrid(this.root, [["Asset", `${property.asset_class} / ${property.asset_subtype}`], ["Submarket", this.plugin.index.findById(property.submarket)?.name ?? property.submarket], ["Building SF", property.building_sf], ["Land Acres", property.land_acres], ["Year Built", property.year_built], ["Assessed Value", property.assessed_value, "money"], ["Last Sale", property.last_sale_price, "money"], ["Owner Entity", this.plugin.index.findById(property.owner_entity)?.name ?? property.owner_entity]]);
     this.linkedSection("Ownership Chain", linked.entities, [["Entity", "name"], ["Piercing Status", "piercing_status"], ["Registered Agent", "registered_agent"], ["Confidence", "confidence_tier"]]);
+    const chain = this.plugin.graph.ownershipChain(property.id);
+    this.linkedSection("Deep Ownership And Control Network", chain.nodes.filter((record) => record.id !== property.id), [["Record", "name"], ["Type", "type"], ["Confidence", "confidence_tier"], ["Source", "source_status"]]);
     this.linkedSection("Parcel / CAD Facts", linked.parcels, [["Parcel", "parcel_id"], ["County", "county"], ["Total Value", "total_value"], ["Owner Raw", "owner_name_raw"]]);
     this.linkedSection("Tenant Roster", linked.tenants, [["Tenant", "name"], ["Type", "tenant_type"], ["Credit", "credit_quality"], ["Expansion", "expansion_status"]]);
     this.linkedSection("Lease Rollover", linked.leases, [["Lease", "name"], ["End", "lease_end"], ["SF", "leased_sf"], ["Risk", "rollover_risk_score"]]);

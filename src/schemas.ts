@@ -15,7 +15,19 @@ export const TYPE_FIELDS: Record<RecordType, string[]> = {
   broker_activity: ["related_property", "related_contact", "related_entity", "activity_type", "broker", "date", "outcome", "next_step", "sentiment", "relationship_temperature"],
   deal_signal: ["property", "signal_type", "signal_strength", "signal_date", "trigger", "evidence", "recommended_action", "assigned_broker", "status"],
   source_document: ["source_type", "source_url", "source_file", "related_records", "source_date", "retrieved_date"],
-  relationship_edge: ["from", "to", "relationship_type", "confidence", "source", "date_observed", "notes"]
+  relationship_edge: ["from", "to", "relationship_type", "confidence", "status", "weight", "valid_from", "valid_to", "evidence_ids", "last_verified", "source", "date_observed", "notes"],
+  company: ["company_name", "company_type", "website", "phone", "address", "city", "state", "zip", "people", "entities", "properties", "relationship_owner_at_strive", "relationship_status", "last_contacted"],
+  task: ["status", "priority", "assigned_to", "due_date", "completed_date", "recurrence", "related_records", "next_action", "timeline_template"],
+  requirement: ["investor", "contacts", "asset_preferences", "submarket_preferences", "deal_size_min", "deal_size_max", "target_close_date", "exchange_status", "status", "assigned_broker", "matched_properties"],
+  pursuit: ["property", "owner", "contacts", "stage", "probability", "expected_fee", "assigned_broker", "next_action", "next_action_date", "target_close_date", "requirements", "transaction"],
+  transaction: ["property", "pursuit", "buyer", "seller", "contacts", "status", "contract_date", "target_close_date", "close_date", "price", "commission_estimate", "probability", "milestones", "documents", "assigned_broker"],
+  document: ["document_type", "file_path", "source_url", "related_records", "document_date", "status", "version", "checksum"],
+  timeline_template: ["workflow_type", "description", "steps", "active"],
+  saved_view: ["view_type", "filters", "columns", "sort", "owner", "shared"],
+  import_batch: ["source_file", "source_hash", "mapping_profile", "record_type", "row_count", "status", "created_count", "updated_count", "skipped_count", "error_count", "rollback_status"],
+  data_issue: ["issue_type", "severity", "record_ids", "description", "status", "recommended_action", "assigned_to"],
+  record_event: ["record_id", "event_type", "occurred_at", "actor", "summary", "data", "batch_id", "dedupe_key"],
+  field_assertion: ["record_id", "field", "value", "valid_from", "valid_to", "observed_at", "source_id", "confidence", "reviewer", "review_status", "supersedes_id"]
 };
 
 export const BODY_TEMPLATES: Partial<Record<RecordType, string[]>> = {
@@ -23,6 +35,11 @@ export const BODY_TEMPLATES: Partial<Record<RecordType, string[]>> = {
   entity: ["Entity Dossier", "Summary", "Entity Piercing Trail", "Known Relationships", "Properties Owned", "Possible Principals", "Source Trail", "Human Review Notes"],
   person: ["Principal Dossier", "Relationship Summary", "Entities Controlled", "Properties Controlled", "Broker Notes", "Source Trail"],
   investor_profile: ["Investor Profile", "Acquisition Thesis", "Known Relationships", "Recent Activity", "Broker Notes"],
-  deal_signal: ["Deal Signal Brief", "Evidence", "Recommended Broker Action", "Human Review Notes"]
+  deal_signal: ["Deal Signal Brief", "Evidence", "Recommended Broker Action", "Human Review Notes"],
+  company: ["Company 360", "Relationship Summary", "People", "Entities", "Properties", "Activity", "Source Trail"],
+  task: ["Task", "Context", "Outcome"],
+  requirement: ["Buyer Requirement", "Acquisition Criteria", "Matched Properties", "Broker Notes"],
+  pursuit: ["Pursuit Brief", "Strategy", "Next Actions", "Activity", "Documents"],
+  transaction: ["Transaction Brief", "Milestones", "Participants", "Documents", "Broker Notes"],
+  document: ["Document Record", "Summary", "Related Records", "Source Trail"]
 };
-

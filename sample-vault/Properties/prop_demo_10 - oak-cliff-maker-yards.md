@@ -13,6 +13,8 @@ address: "2418 Foundry Vista"
 city: "Dallas"
 state: "TX"
 county: "Dallas"
+lat: 32.82
+lng: -96.46
 submarket: "submarket_demo_2"
 asset_class: "industrial"
 asset_subtype: "demo_asset"

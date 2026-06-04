@@ -1,9 +1,10 @@
 # Known Limitations
 
-- Desktop Obsidian must be used for the final visual/load smoke test. On June 4, 2026, this managed Codex session found Obsidian at `C:\Users\Clark\AppData\Local\Programs\Obsidian\Obsidian.exe`, but OS policy returned `Access is denied` when launching it and when reading its runtime log. Automated acceptance verifies the compiled bundle, JavaScript syntax, an Obsidian-like `onload` lifecycle (8 views and 27 commands registered), and installed sample-vault artifacts, but cannot prove desktop rendering by itself.
-- The relationship graph is a lightweight SVG network. It intentionally avoids a heavy graph dependency and does not yet support drag, zoom, clustering, or large-vault virtualization.
-- Record creation forms capture a broker-readable name first; detailed fields are completed in Markdown/frontmatter. Rich per-record edit forms are Phase 2.
-- Property/owner selection falls back to the active compatible note or first indexed demo record. A richer selector is scaffolded but not yet integrated into every view.
-- RealNex integration is one-way CSV staging only. Direct browser automation and two-way sync are explicitly deferred.
-- The sample-vault generator is a deterministic acceptance fixture. The in-plugin generator creates the same required record counts but uses Obsidian APIs at runtime.
-- No live public-data ingestion, paid-platform scraping, contact enrichment, beneficial-owner guessing, Postgres/PostGIS, mapping, OCR, or LLM calls are included.
+- Desktop Obsidian must be used for final visual/load smoke testing. On June 4, 2026, this managed session found Obsidian but OS policy denied launching it and reading its runtime log. Automated acceptance verifies the compiled V2 lifecycle, 19 views, 53 commands, tests, fixtures, and performance.
+- V2 is intentionally local-first and single-user. It does not provide hosted multi-user synchronization, permissions, or conflict resolution between simultaneous vault writers.
+- MapLibre uses the configured online style when available. Local GeoJSON overlays and PMTiles protocol are supported, but users must supply local assets. Polygon and corridor selection use coordinate-entry fallbacks instead of a graphical drawing toolbar.
+- The focused Cytoscape relationship explorer queries and renders neighborhoods rather than attempting to display all 25,000 records simultaneously.
+- CSV import supports automatic and saved mappings, RealNex aliases, exact/fuzzy duplicate review, promotion, and rollback. It does not import XLSX, PDFs, or restricted paid-platform data.
+- Automated merge is limited to unpromoted analytical duplicates. Promoted Markdown dossiers require manual merge review to protect handwritten notes.
+- RealNex direct automation and two-way API synchronization remain deferred. V2 supports controlled CSV import/export and preserves RealNex IDs.
+- Outbound email, hosted deal rooms, mobile applications, advanced 20-year underwriting, live public-data connectors, OCR, and paid-platform scraping are outside V2.

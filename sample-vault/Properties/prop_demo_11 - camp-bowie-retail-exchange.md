@@ -13,6 +13,8 @@ address: "6117 Camp Summit Boulevard"
 city: "Fort Worth"
 state: "TX"
 county: "Tarrant"
+lat: 32.98
+lng: -97.42
 submarket: "submarket_demo_3"
 asset_class: "retail"
 asset_subtype: "demo_asset"

@@ -13,6 +13,8 @@ address: "3911 Dawn Commerce Way"
 city: "Dallas"
 state: "TX"
 county: "Dallas"
+lat: 32.98
+lng: -96.94
 submarket: "submarket_demo_3"
 asset_class: "industrial"
 asset_subtype: "demo_asset"

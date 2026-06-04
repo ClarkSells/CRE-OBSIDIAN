@@ -13,6 +13,8 @@ address: "6720 Calmont Exchange"
 city: "Fort Worth"
 state: "TX"
 county: "Tarrant"
+lat: 32.82
+lng: -97.18
 submarket: "submarket_demo_2"
 asset_class: "retail"
 asset_subtype: "demo_asset"

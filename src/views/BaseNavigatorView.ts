@@ -52,6 +52,6 @@ export abstract class BaseNavigatorView extends ItemView {
   }
 
   protected openRecord(record: NavigatorRecord): void {
-    if (record.file) void this.plugin.app.workspace.getLeaf(false).openFile(record.file);
+    void this.plugin.openRecord(record.id);
   }
 }

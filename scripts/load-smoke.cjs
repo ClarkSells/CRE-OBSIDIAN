@@ -17,7 +17,14 @@ class Element {
 class Plugin {
   constructor() {
     this.app = {
-      vault: {},
+      vault: {
+        getAbstractFileByPath: () => undefined,
+        createFolder: async () => {},
+        createBinary: async () => {},
+        modifyBinary: async () => {},
+        getMarkdownFiles: () => [],
+        on: () => ({})
+      },
       fileManager: {},
       metadataCache: { on: () => ({}) },
       workspace: { onLayoutReady: () => {}, getLeavesOfType: () => [], getLeaf: () => ({}) }
@@ -62,12 +69,11 @@ global.document = { body: new Element() };
   if (typeof PluginClass !== "function") throw new Error("Compiled bundle did not export a plugin class.");
   const plugin = new PluginClass();
   await plugin.onload();
-  if (registrations.views.length !== 8) throw new Error(`Expected 8 registered views, found ${registrations.views.length}.`);
-  if (registrations.commands.length < 27) throw new Error(`Expected at least 27 commands, found ${registrations.commands.length}.`);
+  if (registrations.views.length !== 19) throw new Error(`Expected 19 registered views, found ${registrations.views.length}.`);
+  if (registrations.commands.length < 51) throw new Error(`Expected at least 51 commands, found ${registrations.commands.length}.`);
   if (registrations.settings !== 1 || registrations.ribbons !== 1) throw new Error("Settings tab or ribbon registration missing.");
   console.log(`Lifecycle smoke passed: ${registrations.views.length} views, ${registrations.commands.length} commands, settings and ribbon registered.`);
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-

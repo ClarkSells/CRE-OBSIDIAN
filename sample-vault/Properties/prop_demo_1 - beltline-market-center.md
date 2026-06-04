@@ -13,6 +13,8 @@ address: "18420 Meridian Gate"
 city: "Dallas"
 state: "TX"
 county: "Dallas"
+lat: 32.66
+lng: -97.42
 submarket: "submarket_demo_1"
 asset_class: "retail"
 asset_subtype: "demo_asset"

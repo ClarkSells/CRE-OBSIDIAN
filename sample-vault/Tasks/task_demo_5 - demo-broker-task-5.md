@@ -1,0 +1,30 @@
+---
+type: "task"
+id: "task_demo_5"
+name: "Demo Broker Task 5"
+created: "2026-06-04"
+updated: "2026-06-04"
+confidence_tier: "C"
+source_status: "demo"
+human_review: true
+realnex_id: ""
+tags: ["strive/demo", "strive/task"]
+status: "open"
+priority: "urgent"
+assigned_to: "Jordan"
+due_date: "2026-06-06"
+related_records: ["prop_demo_5"]
+next_action: "Complete the source-aware broker action."
+---
+
+# Demo Broker Task 5
+
+> Fake STRIVE Navigator demo record. Do not use as verified market data.
+
+## Broker Notes
+
+Human-written notes remain editable and are never silently overwritten.
+
+## Source Trail
+
+Synthetic demo source only.

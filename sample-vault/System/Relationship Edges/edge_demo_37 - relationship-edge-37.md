@@ -13,6 +13,10 @@ from: "signal_demo_17"
 to: "prop_demo_1"
 relationship_type: "DEAL_SIGNAL_POINTS_TO_PROPERTY"
 confidence: "C"
+status: "active"
+weight: 1
+valid_from: "2020-01-01"
+last_verified: "2026-06-04"
 date_observed: "2026-06-04"
 ---
 

@@ -5,6 +5,8 @@ import { asStringArray } from "../utils/format";
 export class MetadataIndex {
   private byId = new Map<string, NavigatorRecord>();
   private byType = new Map<RecordType, NavigatorRecord[]>();
+  private byPath = new Map<string, NavigatorRecord>();
+  private edgeAdjacency = new Map<string, NavigatorRecord[]>();
 
   constructor(private vault: Vault, private metadataCache: MetadataCache) {
     for (const type of RECORD_TYPES) this.byType.set(type, []);
@@ -12,15 +14,43 @@ export class MetadataIndex {
 
   async rebuild(): Promise<void> {
     this.byId.clear();
+    this.byPath.clear();
+    this.edgeAdjacency.clear();
     for (const type of RECORD_TYPES) this.byType.set(type, []);
     for (const file of this.vault.getMarkdownFiles()) {
-      const frontmatter = await this.frontmatterFor(file);
-      if (!frontmatter || !RECORD_TYPES.includes(frontmatter.type as RecordType) || !frontmatter.id) continue;
-      const record = { ...frontmatter, type: frontmatter.type as RecordType, id: String(frontmatter.id), name: String(frontmatter.name ?? file.basename), path: file.path, file } as NavigatorRecord;
-      this.byId.set(record.id, record);
-      this.byType.get(record.type)?.push(record);
+      await this.indexFile(file, false);
     }
     for (const records of this.byType.values()) records.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  async indexFile(file: TFile, sort = true): Promise<NavigatorRecord | undefined> {
+    this.removePath(file.path, false);
+    const frontmatter = await this.frontmatterFor(file);
+    if (!frontmatter || !RECORD_TYPES.includes(frontmatter.type as RecordType) || !frontmatter.id) return undefined;
+    const record = { ...frontmatter, type: frontmatter.type as RecordType, id: String(frontmatter.id), name: String(frontmatter.name ?? file.basename), path: file.path, file } as NavigatorRecord;
+    const previous = this.byId.get(record.id);
+    if (previous && previous.path !== record.path) this.removePath(previous.path, false);
+    this.byId.set(record.id, record);
+    this.byPath.set(record.path, record);
+    this.byType.get(record.type)?.push(record);
+    if (record.type === "relationship_edge") this.addEdge(record);
+    if (sort) this.byType.get(record.type)?.sort((a, b) => a.name.localeCompare(b.name));
+    return record;
+  }
+
+  removePath(path: string, sort = true): NavigatorRecord | undefined {
+    const record = this.byPath.get(path);
+    if (!record) return undefined;
+    this.byPath.delete(path);
+    this.byId.delete(record.id);
+    this.byType.set(record.type, (this.byType.get(record.type) ?? []).filter((candidate) => candidate.path !== path));
+    if (record.type === "relationship_edge") this.removeEdge(record);
+    if (sort) this.byType.get(record.type)?.sort((a, b) => a.name.localeCompare(b.name));
+    return record;
+  }
+
+  findByPath(path: string): NavigatorRecord | undefined {
+    return this.byPath.get(path);
   }
 
   private async frontmatterFor(file: TFile): Promise<Record<string, unknown> | null> {
@@ -62,7 +92,7 @@ export class MetadataIndex {
   }
 
   relationshipsFor(id: string): NavigatorRecord[] {
-    return this.findByType("relationship_edge").filter((edge) => edge.from === id || edge.to === id);
+    return [...(this.edgeAdjacency.get(id) ?? [])];
   }
 
   resolveMany(values: unknown, type?: RecordType): NavigatorRecord[] {
@@ -91,5 +121,13 @@ export class MetadataIndex {
       signals: linked("deal_signal"),
       edges
     };
+  }
+
+  private addEdge(edge: NavigatorRecord): void {
+    for (const id of [edge.from, edge.to].map(String).filter(Boolean)) this.edgeAdjacency.set(id, [...(this.edgeAdjacency.get(id) ?? []), edge]);
+  }
+
+  private removeEdge(edge: NavigatorRecord): void {
+    for (const id of [edge.from, edge.to].map(String).filter(Boolean)) this.edgeAdjacency.set(id, (this.edgeAdjacency.get(id) ?? []).filter((candidate) => candidate.id !== edge.id));
   }
 }

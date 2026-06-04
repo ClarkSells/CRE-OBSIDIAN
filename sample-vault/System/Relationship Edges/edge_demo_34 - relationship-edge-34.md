@@ -13,6 +13,10 @@ from: "prop_demo_10"
 to: "tenant_demo_4"
 relationship_type: "PROPERTY_OCCUPIED_BY_TENANT"
 confidence: "C"
+status: "active"
+weight: 1
+valid_from: "2020-01-01"
+last_verified: "2026-06-04"
 date_observed: "2026-06-04"
 ---
 

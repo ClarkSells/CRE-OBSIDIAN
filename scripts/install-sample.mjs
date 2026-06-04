@@ -4,7 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const vault = path.join(root, "sample-vault");
 const pluginDir = path.join(vault, ".obsidian", "plugins", "strive-navigator");
-const folders = ["Properties", "Parcels", "Entities", "People", "Companies", "Investors", "Tenants", "Leases", "Loans", "Comps/Sales", "Comps/Leases", "Submarkets", "Deal Signals", "Broker Notes", "Dashboards", "Templates", "Sources", "Imports", "Exports", "System/Relationship Edges"];
+const folders = ["Properties", "Parcels", "Entities", "People", "Companies", "Investors", "Tenants", "Leases", "Loans", "Comps/Sales", "Comps/Leases", "Submarkets", "Deal Signals", "Broker Notes", "Tasks", "Requirements", "Pursuits", "Transactions", "Documents", "Dashboards", "Templates", "Sources", "Imports", "Exports", "System/Relationship Edges", "System/Timeline Templates", "System/Saved Views", "System/Import Batches", "System/Data Issues", "System/Record Events", "System/Field Assertions", "System/Backups"];
 
 const catalogs = {
   submarket: ["Far North Dallas", "West Fort Worth", "South Dallas", "Irving Las Colinas", "Plano Frisco", "Lower Great Southwest", "East Dallas", "North Fort Worth Logistics"],
@@ -20,17 +20,27 @@ const catalogs = {
   lease_comp: Array.from({ length: 10 }, (_, i) => `DFW Lease Comparable ${i + 1}`),
   deal_signal: Array.from({ length: 20 }, (_, i) => `Priority Deal Signal ${i + 1}`),
   broker_activity: Array.from({ length: 10 }, (_, i) => `Broker Follow-Up ${i + 1}`),
-  relationship_edge: Array.from({ length: 40 }, (_, i) => `Relationship Edge ${i + 1}`)
+  relationship_edge: Array.from({ length: 70 }, (_, i) => `Relationship Edge ${i + 1}`),
+  company: Array.from({ length: 6 }, (_, i) => `Demo Investment Company ${i + 1}`),
+  task: Array.from({ length: 16 }, (_, i) => `Demo Broker Task ${i + 1}`),
+  requirement: Array.from({ length: 8 }, (_, i) => `Demo Buyer Requirement ${i + 1}`),
+  pursuit: Array.from({ length: 10 }, (_, i) => `Demo Investment Sales Pursuit ${i + 1}`),
+  transaction: Array.from({ length: 6 }, (_, i) => `Demo Transaction ${i + 1}`),
+  document: Array.from({ length: 8 }, (_, i) => `Demo Source Document ${i + 1}`),
+  timeline_template: ["Investment Sales Prospecting", "BOV Pursuit", "Listing Launch", "Transaction Execution", "Post-Close Follow-Up"],
+  saved_view: ["High Signal Properties", "Active Owner Pursuits", "Upcoming Closings"]
 };
 
 const typeFolder = {
   property: "Properties", parcel: "Parcels", entity: "Entities", person: "People",
   investor_profile: "Investors", tenant: "Tenants", lease: "Leases", loan: "Loans",
   sale_comp: "Comps/Sales", lease_comp: "Comps/Leases", submarket: "Submarkets",
-  deal_signal: "Deal Signals", broker_activity: "Broker Notes", relationship_edge: "System/Relationship Edges"
+  deal_signal: "Deal Signals", broker_activity: "Broker Notes", relationship_edge: "System/Relationship Edges",
+  company: "Companies", task: "Tasks", requirement: "Requirements", pursuit: "Pursuits", transaction: "Transactions",
+  document: "Documents", timeline_template: "System/Timeline Templates", saved_view: "System/Saved Views"
 };
 
-const prefix = { property: "prop", parcel: "parcel", entity: "entity", person: "person", investor_profile: "investor", tenant: "tenant", lease: "lease", loan: "loan", sale_comp: "salecomp", lease_comp: "leasecomp", submarket: "submarket", deal_signal: "signal", broker_activity: "activity", relationship_edge: "edge" };
+const prefix = { property: "prop", parcel: "parcel", entity: "entity", person: "person", investor_profile: "investor", tenant: "tenant", lease: "lease", loan: "loan", sale_comp: "salecomp", lease_comp: "leasecomp", submarket: "submarket", deal_signal: "signal", broker_activity: "activity", relationship_edge: "edge", company: "company", task: "task", requirement: "requirement", pursuit: "pursuit", transaction: "transaction", document: "document", timeline_template: "timeline", saved_view: "savedview" };
 const propertyAddresses = ["18420 Meridian Gate", "6720 Calmont Exchange", "3911 Dawn Commerce Way", "5225 Summit Canal Drive", "7112 Copper Star Parkway", "2821 Prairie Link Road", "4880 Garland Crest Avenue", "13600 Northline Freight Drive", "10910 Lantern Bend", "2418 Foundry Vista", "6117 Camp Summit Boulevard", "3401 Hidden Spur Road"];
 const assetClasses = ["retail", "retail", "industrial", "office", "office", "industrial", "multifamily", "industrial", "office", "industrial", "retail", "office"];
 
@@ -47,7 +57,7 @@ function markdown(record) {
 
 function extras(type, i) {
   const p = (i % 12) + 1;
-  if (type === "property") return { address: propertyAddresses[i], city: ["Dallas", "Fort Worth", "Dallas", "Irving", "Plano", "Grand Prairie", "Dallas", "Fort Worth", "Frisco", "Dallas", "Fort Worth", "Irving"][i], state: "TX", county: i === 1 || i === 7 || i === 10 ? "Tarrant" : "Dallas", submarket: `submarket_demo_${(i % 8) + 1}`, asset_class: assetClasses[i], asset_subtype: "demo_asset", building_sf: 52000 + i * 21000, land_acres: 3 + i, year_built: 1990 + i, owner_entity: `entity_demo_${(i % 10) + 1}`, beneficial_owner: `person_demo_${(i % 8) + 1}`, parcel_ids: [`parcel_demo_${p}`], tenant_ids: [`tenant_demo_${(i % 15) + 1}`], lease_ids: [`lease_demo_${(i % 15) + 1}`], loan_ids: i < 8 ? [`loan_demo_${i + 1}`] : [], sale_comp_ids: [`salecomp_demo_${(i % 15) + 1}`], lease_comp_ids: i < 10 ? [`leasecomp_demo_${i + 1}`] : [], assessed_value: 8000000 + i * 2750000, deal_signal_score: 97 - i * 3 };
+  if (type === "property") return { address: propertyAddresses[i], city: ["Dallas", "Fort Worth", "Dallas", "Irving", "Plano", "Grand Prairie", "Dallas", "Fort Worth", "Frisco", "Dallas", "Fort Worth", "Irving"][i], state: "TX", county: i === 1 || i === 7 || i === 10 ? "Tarrant" : "Dallas", lat: Number((32.66 + (i % 4) * .16).toFixed(5)), lng: Number((-97.42 + (i % 5) * .24).toFixed(5)), submarket: `submarket_demo_${(i % 8) + 1}`, asset_class: assetClasses[i], asset_subtype: "demo_asset", building_sf: 52000 + i * 21000, land_acres: 3 + i, year_built: 1990 + i, owner_entity: `entity_demo_${(i % 10) + 1}`, beneficial_owner: `person_demo_${(i % 8) + 1}`, parcel_ids: [`parcel_demo_${p}`], tenant_ids: [`tenant_demo_${(i % 15) + 1}`], lease_ids: [`lease_demo_${(i % 15) + 1}`], loan_ids: i < 8 ? [`loan_demo_${i + 1}`] : [], sale_comp_ids: [`salecomp_demo_${(i % 15) + 1}`], lease_comp_ids: i < 10 ? [`leasecomp_demo_${i + 1}`] : [], assessed_value: 8000000 + i * 2750000, deal_signal_score: 97 - i * 3 };
   if (type === "parcel") return { parcel_id: `DEMO-CAD-${10001 + i}`, matched_property: `prop_demo_${p}`, county: "Dallas", situs_address: propertyAddresses[i], total_value: 8000000 + i * 2750000 };
   if (type === "entity") return { entity_name: catalogs.entity[i], entity_type: i % 2 ? "LP" : "LLC", state_of_formation: "TX", registered_agent: `person_demo_${(i % 8) + 1}`, properties_owned: [`prop_demo_${p}`], known_principals: [`person_demo_${(i % 8) + 1}`], piercing_status: i % 3 ? "simple" : "layered" };
   if (type === "person") return { full_name: catalogs.person[i], role: "owner", entities_controlled: [`entity_demo_${i + 1}`], relationship_owner_at_strive: ["Clark", "Jordan", "Taylor"][i % 3], relationship_status: i % 2 ? "cold" : "warm", email_business: "demo@example.invalid", phone_office: "555-0100" };
@@ -62,10 +72,18 @@ function extras(type, i) {
   if (type === "broker_activity") return { related_property: `prop_demo_${p}`, related_contact: `person_demo_${(i % 8) + 1}`, activity_type: "call", broker: ["Clark", "Jordan"][i % 2], date: "2026-05-20", outcome: "Demo call outcome.", next_step: "Confirm capital plan." };
   if (type === "relationship_edge") {
     const group = Math.floor(i / 12);
-    const relationship = ["PROPERTY_OWNED_BY_ENTITY", "PROPERTY_SITS_ON_PARCEL", "PROPERTY_OCCUPIED_BY_TENANT", "DEAL_SIGNAL_POINTS_TO_PROPERTY"][group] ?? "PROPERTY_OWNED_BY_ENTITY";
-    const targets = [`entity_demo_${(i % 10) + 1}`, `parcel_demo_${p}`, `tenant_demo_${(i % 15) + 1}`, `signal_demo_${(i % 20) + 1}`];
-    return { from: group === 3 ? targets[group] : `prop_demo_${p}`, to: group === 3 ? `prop_demo_${p}` : targets[group], relationship_type: relationship, confidence: "C", date_observed: "2026-06-04" };
+    const relationship = ["PROPERTY_OWNED_BY_ENTITY", "PROPERTY_SITS_ON_PARCEL", "PROPERTY_OCCUPIED_BY_TENANT", "DEAL_SIGNAL_POINTS_TO_PROPERTY", "ENTITY_CONTROLLED_BY_PERSON", "PERSON_CONTROLS_ENTITY"][group] ?? "PROPERTY_OWNED_BY_ENTITY";
+    const targets = [`entity_demo_${(i % 10) + 1}`, `parcel_demo_${p}`, `tenant_demo_${(i % 15) + 1}`, `signal_demo_${(i % 20) + 1}`, `person_demo_${(i % 8) + 1}`, `company_demo_${(i % 6) + 1}`];
+    return { from: group === 3 ? targets[group] : group >= 4 ? `entity_demo_${(i % 10) + 1}` : `prop_demo_${p}`, to: group === 3 ? `prop_demo_${p}` : targets[group], relationship_type: relationship, confidence: "C", status: group >= 4 ? "inferred" : "active", weight: group >= 4 ? .65 : 1, valid_from: "2020-01-01", last_verified: "2026-06-04", date_observed: "2026-06-04" };
   }
+  if (type === "company") return { company_name: catalogs.company[i], company_type: ["investment_firm", "family_office", "developer"][i % 3], people: [`person_demo_${(i % 8) + 1}`], entities: [`entity_demo_${(i % 10) + 1}`], properties: [`prop_demo_${p}`], relationship_owner_at_strive: ["Clark", "Jordan", "Taylor"][i % 3], relationship_status: i % 2 ? "warm" : "active" };
+  if (type === "task") return { status: i % 5 ? "open" : "complete", priority: i % 4 ? "normal" : "urgent", assigned_to: ["Clark", "Jordan", "Taylor"][i % 3], due_date: `2026-06-${String(2 + i).padStart(2, "0")}`, related_records: [`prop_demo_${p}`], next_action: "Complete the source-aware broker action." };
+  if (type === "requirement") return { investor: `investor_demo_${i + 1}`, contacts: [`person_demo_${i + 1}`], asset_preferences: [assetClasses[i]], submarket_preferences: [`submarket_demo_${i + 1}`], deal_size_min: 7000000, deal_size_max: 38000000, target_close_date: "2026-12-15", status: "active", assigned_broker: ["Clark", "Jordan", "Taylor"][i % 3], matched_properties: [`prop_demo_${p}`] };
+  if (type === "pursuit") return { property: `prop_demo_${p}`, owner: `entity_demo_${(i % 10) + 1}`, stage: ["research", "relationship", "valuation", "pitch", "listing"][i % 5], probability: 20 + (i % 5) * 15, expected_fee: 85000 + i * 24000, assigned_broker: ["Clark", "Jordan", "Taylor"][i % 3], next_action: "Advance owner relationship with verified intelligence." };
+  if (type === "transaction") return { property: `prop_demo_${p}`, pursuit: `pursuit_demo_${i + 1}`, buyer: `investor_demo_${i + 1}`, seller: `entity_demo_${i + 1}`, status: ["due_diligence", "under_contract", "closing"][i % 3], target_close_date: "2026-08-15", price: 12000000 + i * 2500000, commission_estimate: 240000 + i * 50000, probability: 70 + i * 5, milestones: ["PSA executed", "Due diligence", "Financing", "Closing"] };
+  if (type === "document") return { document_type: ["OM", "rent_roll", "T12", "PSA"][i % 4], file_path: `Sources/demo-${i + 1}.pdf`, related_records: [`prop_demo_${p}`], document_date: "2026-05-01", status: "demo", version: 1 };
+  if (type === "timeline_template") return { workflow_type: ["prospecting", "bov", "listing", "transaction", "post_close"][i], description: "Demo V2 workflow template.", steps: ["Research", "Prepare", "Execute", "Follow up"], active: true };
+  if (type === "saved_view") return { view_type: ["map", "pursuit_pipeline", "transaction_manager"][i], filters: { demo: true }, columns: [], sort: "updated_desc", owner: "STRIVE", shared: true };
   return {};
 }
 
@@ -88,6 +106,7 @@ const csvHeader = "RecordType,RealNexID,Name,Address,City,State,Zip,County,Subma
 const csvRows = catalogs.property.map((name, i) => `property,,\"${name}\",\"${propertyAddresses[i]}\",,TX,,,,${assetClasses[i]},,,,,entity_demo_${(i % 10) + 1},person_demo_${(i % 8) + 1},,,,,,,${8000000 + i * 2750000},${97 - i * 3},C,true,demo,2026-06-04,Fake demo record`);
 await writeFile(path.join(vault, "Exports", "realnex_export_2026-06-04_00-00-00.csv"), [csvHeader, ...csvRows].join("\r\n"));
 await writeFile(path.join(vault, "Dashboards", "STRIVE Navigator.md"), "# STRIVE Navigator\n\nOpen the Command Center from the command palette. All records in this vault are fake demo data.\n");
+await writeFile(path.join(vault, "Imports", "demo-realnex-import.csv"), "RecordType,RealNexID,Property Name,Property Address,City,State,Property Type,Building Size,Owner,DealSignalScore\nproperty,RNX-DEMO-1,Demo Import Retail Center,9000 Example Commerce Way,Dallas,TX,retail,78000,Demo Import Holdings LLC,82\nproperty,RNX-DEMO-2,Demo Import Industrial Park,9100 Example Commerce Way,Fort Worth,TX,industrial,145000,Demo Import Holdings LLC,76\n");
+await writeFile(path.join(vault, "Imports", "demo-dfw-overlay.geojson"), JSON.stringify({ type: "FeatureCollection", features: [{ type: "Feature", properties: { name: "Demo DFW Intelligence Zone" }, geometry: { type: "Polygon", coordinates: [[[-97.25, 32.72], [-96.75, 32.72], [-96.75, 33.08], [-97.25, 33.08], [-97.25, 32.72]]] } }] }, null, 2));
 await writeFile(path.join(vault, "README.md"), "# STRIVE Navigator Sample Vault\n\nThis vault contains fake DFW demo records and a preinstalled STRIVE Navigator plugin build. Open it in Obsidian, enable community plugins, then run `STRIVE Navigator: Open Command Center`.\n");
 console.log(`Installed plugin and ${Object.values(catalogs).reduce((sum, items) => sum + items.length, 0)} demo records into ${vault}`);
-

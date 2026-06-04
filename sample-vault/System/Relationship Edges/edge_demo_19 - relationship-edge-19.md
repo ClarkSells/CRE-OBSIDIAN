@@ -13,6 +13,10 @@ from: "prop_demo_7"
 to: "parcel_demo_7"
 relationship_type: "PROPERTY_SITS_ON_PARCEL"
 confidence: "C"
+status: "active"
+weight: 1
+valid_from: "2020-01-01"
+last_verified: "2026-06-04"
 date_observed: "2026-06-04"
 ---
 

@@ -28,7 +28,12 @@ Human-written Markdown bodies are not replaced during metadata updates. `RecordF
 - Investor Match: deterministic score and visible rationale
 - RealNex Sync Queue: review and export staging
 
+V2 adds Contact 360, Company 360, History Timeline, Map Intelligence, CSV Import Center, Data Quality Center, Task Center, Requirements Board, Pursuit Pipeline, Transaction Manager, and Unified Search.
+
+## V2 Analytical And Operating Layers
+
+V2 implements the two-tier architecture documented in `V2_ARCHITECTURE.md`: `sql.js` analytical persistence, migrations/backups, immutable events, field assertions, temporal graph edges, CSV batches, workflow records, unified search, and spatial intelligence. Markdown remains the curated dossier and human-note layer.
+
 ## Future Layers
 
 Postgres/PostGIS can become the heavy normalized system for geometry, 150,000-record bulk data, and spatial analytics while Markdown remains the curated intelligence layer. Future local agents should ingest through explicit source documents, append evidence, preserve broker notes, and mark inferred claims for review.
-

@@ -1,6 +1,8 @@
 node_modules/
+.npm-cache/
 main.js
 *.map
 .obsidian/workspace*.json
 sample-vault/.obsidian/workspace*.json
-
+**/System/strive-navigator-v2.sqlite
+**/System/Backups/*.sqlite

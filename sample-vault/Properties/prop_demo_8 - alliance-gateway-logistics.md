@@ -13,6 +13,8 @@ address: "13600 Northline Freight Drive"
 city: "Fort Worth"
 state: "TX"
 county: "Tarrant"
+lat: 33.14
+lng: -96.94
 submarket: "submarket_demo_8"
 asset_class: "industrial"
 asset_subtype: "demo_asset"

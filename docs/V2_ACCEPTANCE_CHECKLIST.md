@@ -1,0 +1,18 @@
+# V2 Acceptance Checklist
+
+- [x] V1 acceptance remains green.
+- [x] V2 analytical store initializes, serializes, reloads, backs up, and reports health.
+- [x] V1 records migrate without changing Markdown bodies or IDs.
+- [x] New V2 record types create, index, validate, and render.
+- [x] Plugin-created edits, workflows, imports, promotions, and migrations record immutable events.
+- [x] Field assertions preserve conflicting sourced values.
+- [x] Temporal edges support current and as-of queries.
+- [x] Relationship explorer supports depth, filters, clusters, saved views, and path explanation.
+- [x] Map Intelligence plots and filters local record coordinates.
+- [x] CSV import supports preview, mapping profiles, exact/fuzzy dedupe, batch history, promotion, and rollback.
+- [x] Data Quality Center identifies duplicates, orphans, invalid references, stale records, conflicts, and review queues.
+- [x] Task, recurring-task, requirements, pursuit, and transaction workflows function.
+- [x] Unified search finds analytical and Markdown records and supports bulk promotion/saved searches.
+- [x] 25,000-record benchmark meets documented targets.
+- [x] Production build, typecheck, lifecycle smoke, V2 tests, benchmark, sample install, and automated acceptance pass.
+- [ ] Desktop Obsidian visual smoke remains manual because OS policy denies launch in this managed session.

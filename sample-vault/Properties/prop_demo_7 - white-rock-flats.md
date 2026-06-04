@@ -13,6 +13,8 @@ address: "4880 Garland Crest Avenue"
 city: "Dallas"
 state: "TX"
 county: "Dallas"
+lat: 32.98
+lng: -97.18
 submarket: "submarket_demo_7"
 asset_class: "multifamily"
 asset_subtype: "demo_asset"
