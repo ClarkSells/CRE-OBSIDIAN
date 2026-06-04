@@ -1,0 +1,6 @@
+node_modules/
+main.js
+*.map
+.obsidian/workspace*.json
+sample-vault/.obsidian/workspace*.json
+

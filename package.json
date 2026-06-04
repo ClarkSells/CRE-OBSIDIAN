@@ -1,0 +1,22 @@
+{
+  "name": "strive-navigator-obsidian",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DFW commercial real estate investment-sales intelligence for Obsidian",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production",
+    "typecheck": "tsc --noEmit",
+    "load-smoke": "node scripts/load-smoke.cjs",
+    "verify": "node scripts/verify.mjs",
+    "acceptance": "npm run build && npm run typecheck && npm run load-smoke && npm run install:sample && npm run verify",
+    "install:sample": "node scripts/install-sample.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "builtin-modules": "^4.0.0",
+    "esbuild": "^0.25.5",
+    "obsidian": "^1.8.7",
+    "typescript": "^5.8.3"
+  }
+}

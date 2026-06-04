@@ -1,0 +1,475 @@
+.strive-navigator {
+  --sn-bg: #070b11;
+  --sn-panel: #0d141e;
+  --sn-panel-2: #111b27;
+  --sn-line: rgba(146, 169, 196, 0.18);
+  --sn-text: #edf3f8;
+  --sn-muted: #91a1b3;
+  --sn-accent: #d6aa55;
+  --sn-accent-soft: rgba(214, 170, 85, 0.14);
+  --sn-alert: #f06b55;
+  --sn-positive: #47c995;
+  --sn-blue: #4fa7ff;
+  background: radial-gradient(circle at 15% 0%, rgba(42, 75, 111, 0.22), transparent 32%), var(--sn-bg);
+  color: var(--sn-text);
+  min-height: 100%;
+}
+
+.strive-accent-blue .strive-navigator {
+  --sn-accent: #4fa7ff;
+  --sn-accent-soft: rgba(79, 167, 255, 0.14);
+}
+
+.strive-shell {
+  box-sizing: border-box;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 22px 26px 60px;
+  font-family: Inter, var(--font-interface);
+}
+
+.strive-mode-bar,
+.strive-page-header,
+.strive-section-heading,
+.strive-status-row,
+.strive-action-strip,
+.strive-filter-bar,
+.strive-card-footer,
+.strive-signal-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strive-mode-bar {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sn-line);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.strive-terminal-mark,
+.strive-eyebrow {
+  color: var(--sn-accent);
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.strive-mode-buttons,
+.strive-action-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.strive-mode-buttons button,
+.strive-action-strip button {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid var(--sn-line);
+  color: var(--sn-muted);
+  border-radius: 7px;
+  padding: 7px 11px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.strive-mode-buttons button:hover,
+.strive-mode-buttons button.is-active,
+.strive-action-strip button:hover,
+.strive-action-strip button.mod-cta {
+  background: var(--sn-accent-soft);
+  border-color: var(--sn-accent);
+  color: var(--sn-accent);
+}
+
+.strive-page-header {
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 26px;
+  margin-bottom: 18px;
+  border: 1px solid var(--sn-line);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(18, 30, 45, 0.96), rgba(9, 14, 22, 0.92));
+  box-shadow: 0 24px 70px rgba(0,0,0,0.25), inset 0 1px rgba(255,255,255,0.04);
+}
+
+.strive-page-header h1 {
+  color: var(--sn-text);
+  font-size: clamp(25px, 3vw, 42px);
+  line-height: 1;
+  margin: 9px 0 10px;
+  letter-spacing: -0.045em;
+}
+
+.strive-page-header p {
+  color: var(--sn-muted);
+  max-width: 760px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.strive-action-strip {
+  margin: 14px 0 20px;
+}
+
+.strive-kpi-grid,
+.strive-card-grid,
+.strive-fact-grid,
+.strive-signal-grid,
+.strive-match-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.strive-kpi {
+  position: relative;
+  overflow: hidden;
+  min-height: 90px;
+  padding: 15px;
+  border: 1px solid var(--sn-line);
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(18,28,40,0.96), rgba(10,16,24,0.96));
+}
+
+.strive-kpi::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--sn-accent);
+  opacity: 0.5;
+}
+
+.strive-kpi.is-alert::after { background: var(--sn-alert); opacity: 1; }
+.strive-kpi.is-warning::after { background: #e4b957; opacity: 1; }
+.strive-kpi-label,
+.strive-fact-label {
+  color: var(--sn-muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.strive-kpi-value {
+  margin-top: 8px;
+  font-family: var(--font-monospace);
+  font-size: 31px;
+  font-weight: 700;
+  color: var(--sn-text);
+}
+
+.strive-section {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid var(--sn-line);
+  border-radius: 12px;
+  background: rgba(11, 18, 27, 0.88);
+}
+
+.strive-section-heading {
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.strive-section-heading h2 {
+  color: var(--sn-text);
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.strive-section-heading span,
+.strive-muted {
+  color: var(--sn-muted);
+  font-size: 11px;
+}
+
+.strive-record-card,
+.strive-signal-card,
+.strive-match-card {
+  position: relative;
+  border: 1px solid var(--sn-line);
+  border-radius: 9px;
+  padding: 14px;
+  background: var(--sn-panel-2);
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.strive-record-card:hover,
+.strive-signal-card:hover,
+.strive-match-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sn-accent);
+  background: #152131;
+}
+
+.strive-record-card h3,
+.strive-signal-card h3,
+.strive-match-card h3 {
+  color: var(--sn-text);
+  font-size: 14px;
+  margin: 12px 0 6px;
+}
+
+.strive-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid var(--sn-line);
+  border-radius: 999px;
+  padding: 3px 7px;
+  color: var(--sn-muted);
+  background: rgba(255,255,255,0.03);
+  font-family: var(--font-monospace);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.strive-badge.is-alert { color: #ff9d8c; border-color: rgba(240, 107, 85, .45); background: rgba(240, 107, 85, .1); }
+.strive-badge.is-warning { color: #f2c46b; border-color: rgba(242, 196, 107, .4); background: rgba(242, 196, 107, .08); }
+.strive-badge.is-positive { color: #79deb7; border-color: rgba(71, 201, 149, .4); background: rgba(71, 201, 149, .08); }
+.strive-badge.confidence-a { color: #79deb7; border-color: #328967; }
+.strive-badge.confidence-b { color: #7ec5ff; border-color: #376e9f; }
+.strive-badge.confidence-c { color: #f0c776; border-color: #8a6e36; }
+.strive-badge.confidence-d,
+.strive-badge.confidence-f { color: #ff9d8c; border-color: #923f32; }
+
+.strive-status-row {
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.strive-fact-grid {
+  margin: 14px 0;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.strive-fact {
+  min-height: 58px;
+  padding: 12px;
+  border-left: 2px solid var(--sn-accent);
+  background: rgba(255,255,255,0.025);
+}
+
+.strive-fact-value {
+  margin-top: 7px;
+  color: var(--sn-text);
+  font-family: var(--font-monospace);
+  font-size: 12px;
+}
+
+.strive-table-wrap {
+  overflow: auto;
+  border: 1px solid var(--sn-line);
+  border-radius: 8px;
+}
+
+.strive-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.strive-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #111b27;
+  color: var(--sn-accent);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.strive-table th,
+.strive-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--sn-line);
+  vertical-align: top;
+}
+
+.strive-table td {
+  color: #c7d2de;
+  max-width: 360px;
+}
+
+.strive-table tbody tr:hover {
+  background: var(--sn-accent-soft);
+  cursor: pointer;
+}
+
+.strive-warning-panel,
+.strive-success-panel,
+.strive-ai-brief {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(242, 196, 107, .35);
+  border-left: 3px solid #e4b957;
+  border-radius: 7px;
+  background: rgba(228, 185, 87, .07);
+  color: #e9d5a6;
+  font-size: 11px;
+}
+
+.strive-success-panel {
+  border-color: rgba(71,201,149,.4);
+  border-left-color: var(--sn-positive);
+  color: #9ee5c9;
+  background: rgba(71,201,149,.07);
+}
+
+.strive-agent-inspector {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid rgba(79,167,255,.3);
+  border-radius: 10px;
+  background: #070d14;
+}
+
+.strive-agent-inspector pre {
+  max-height: 480px;
+  overflow: auto;
+  color: #9ecbf5;
+  font-size: 10px;
+}
+
+.strive-signal-grid,
+.strive-match-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.strive-signal-card {
+  border-top: 2px solid var(--sn-alert);
+}
+
+.strive-signal-card p {
+  color: #bdc9d5;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.strive-signal-score,
+.strive-match-score {
+  color: var(--sn-alert);
+  font-family: var(--font-monospace);
+  font-size: 27px;
+  font-weight: 800;
+  margin-left: auto;
+}
+
+.strive-match-score { color: var(--sn-accent); }
+.strive-action-callout {
+  margin: 12px 0;
+  padding: 9px;
+  border-left: 2px solid var(--sn-accent);
+  color: var(--sn-accent);
+  background: var(--sn-accent-soft);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.strive-card-footer,
+.strive-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.strive-select {
+  min-width: 180px;
+  padding: 7px 9px;
+  border: 1px solid var(--sn-line);
+  border-radius: 7px;
+  background: var(--sn-panel-2);
+  color: var(--sn-text);
+  font-size: 11px;
+}
+
+.strive-filter-bar {
+  margin: 12px 0;
+}
+
+.strive-graph-wrap {
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  border: 1px solid var(--sn-line);
+  border-radius: 9px;
+  background: radial-gradient(circle, rgba(79,167,255,.08), transparent 58%), #070c12;
+}
+
+.strive-graph {
+  width: 100%;
+  min-width: 760px;
+  height: 650px;
+}
+
+.strive-graph-edge {
+  stroke: rgba(130, 158, 190, .28);
+  stroke-width: 1;
+}
+
+.strive-graph-node {
+  cursor: pointer;
+}
+
+.strive-graph-node circle {
+  fill: #172638;
+  stroke: var(--sn-blue);
+  stroke-width: 2;
+  transition: fill 120ms ease;
+}
+
+.strive-graph-node:hover circle { fill: var(--sn-accent-soft); stroke: var(--sn-accent); }
+.strive-graph-node.node-property circle { fill: #382c19; stroke: var(--sn-accent); }
+.strive-graph-node.node-deal_signal circle { fill: #361b1c; stroke: var(--sn-alert); }
+.strive-graph-node.node-entity circle { fill: #182d27; stroke: var(--sn-positive); }
+.strive-graph-node text {
+  fill: #aebccc;
+  font-family: var(--font-monospace);
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.strive-graph-edge-label {
+  fill: rgba(178, 196, 215, .65);
+  font-family: var(--font-monospace);
+  font-size: 6px;
+  text-anchor: middle;
+  text-transform: uppercase;
+}
+
+.strive-edge-row,
+.strive-validation-row {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sn-line);
+  color: var(--sn-muted);
+  font-family: var(--font-monospace);
+  font-size: 10px;
+}
+
+.strive-empty {
+  padding: 18px;
+  border: 1px dashed var(--sn-line);
+  border-radius: 7px;
+  color: var(--sn-muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 780px) {
+  .strive-shell { padding: 12px; }
+  .strive-mode-bar,
+  .strive-page-header { align-items: flex-start; flex-direction: column; }
+  .strive-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "strive-navigator",
+  "name": "STRIVE Navigator",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Premium DFW commercial real estate investment-sales intelligence.",
+  "author": "STRIVE",
+  "isDesktopOnly": true
+}
+

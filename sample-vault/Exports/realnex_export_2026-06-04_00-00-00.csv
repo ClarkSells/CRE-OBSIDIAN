@@ -1,0 +1,13 @@
+RecordType,RealNexID,Name,Address,City,State,Zip,County,Submarket,AssetClass,AssetSubtype,BuildingSF,LandAcres,YearBuilt,OwnerEntity,BeneficialOwner,PrimaryContact,Phone,Email,LastSaleDate,LastSalePrice,AssessedValue,DealSignalScore,ConfidenceTier,HumanReview,SourceStatus,LastUpdated,Notes
+property,,"Beltline Market Center","18420 Meridian Gate",,TX,,,,retail,,,,,entity_demo_1,person_demo_1,,,,,,,8000000,97,C,true,demo,2026-06-04,Fake demo record
+property,,"Ridgmar Commerce Row","6720 Calmont Exchange",,TX,,,,retail,,,,,entity_demo_2,person_demo_2,,,,,,,10750000,94,C,true,demo,2026-06-04,Fake demo record
+property,,"Trinity Small Bay Works","3911 Dawn Commerce Way",,TX,,,,industrial,,,,,entity_demo_3,person_demo_3,,,,,,,13500000,91,C,true,demo,2026-06-04,Fake demo record
+property,,"Las Colinas Meridian Tower","5225 Summit Canal Drive",,TX,,,,office,,,,,entity_demo_4,person_demo_4,,,,,,,16250000,88,C,true,demo,2026-06-04,Fake demo record
+property,,"Legacy Park Exchange","7112 Copper Star Parkway",,TX,,,,office,,,,,entity_demo_5,person_demo_5,,,,,,,19000000,85,C,true,demo,2026-06-04,Fake demo record
+property,,"GSW Logistics Court","2821 Prairie Link Road",,TX,,,,industrial,,,,,entity_demo_6,person_demo_6,,,,,,,21750000,82,C,true,demo,2026-06-04,Fake demo record
+property,,"White Rock Flats","4880 Garland Crest Avenue",,TX,,,,multifamily,,,,,entity_demo_7,person_demo_7,,,,,,,24500000,79,C,true,demo,2026-06-04,Fake demo record
+property,,"Alliance Gateway Logistics","13600 Northline Freight Drive",,TX,,,,industrial,,,,,entity_demo_8,person_demo_8,,,,,,,27250000,76,C,true,demo,2026-06-04,Fake demo record
+property,,"Frisco Railhead Offices","10910 Lantern Bend",,TX,,,,office,,,,,entity_demo_9,person_demo_1,,,,,,,30000000,73,C,true,demo,2026-06-04,Fake demo record
+property,,"Oak Cliff Maker Yards","2418 Foundry Vista",,TX,,,,industrial,,,,,entity_demo_10,person_demo_2,,,,,,,32750000,70,C,true,demo,2026-06-04,Fake demo record
+property,,"Camp Bowie Retail Exchange","6117 Camp Summit Boulevard",,TX,,,,retail,,,,,entity_demo_1,person_demo_3,,,,,,,35500000,67,C,true,demo,2026-06-04,Fake demo record
+property,,"Irving Tech Commons","3401 Hidden Spur Road",,TX,,,,office,,,,,entity_demo_2,person_demo_4,,,,,,,38250000,64,C,true,demo,2026-06-04,Fake demo record
